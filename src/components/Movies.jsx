@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 
+const onFilterChange = (e) => {
+  const selectedFilter = e.target.value;
+  const movieWrapper = document.getElementById("movieWrapper");
+  const movies = Array.from(movieWrapper.getElementsByClassName("movie"));
 
-const MoviesComponent = ({ movies }) => {
-const Movies = ({ movies: initialMovies }) => {
-const [movies, setMovies ] = React.useState(initialMovies);
-const getMovies = async (searchTerm) => {
-  const response = await fetch(
-    `https://www.omdbapi.com/?apikey=9b5d9901&s=${searchTerm}`,
-  );
-  const data = await response.json();
-  setMovies(data.Search || []);
-}
- 
-
-  const onFilterChange = () => {
-    const searchTerm = document.querySelector("#searchInput").value;
-    getMovies(searchTerm);
+  if (selectedFilter === "MOST RECENT") {
+    movies.sort((a, b) => {
+      const dateA = new Date(a.getAttribute("data-release-date"));
+      const dateB = new Date(b.getAttribute("data-release-date"));
+      return dateB - dateA;
+    });
+  } else if (selectedFilter === "OLDEST") {
+    movies.sort((a, b) => {
+      const dateA = new Date(a.getAttribute("data-release-date"));
+      const dateB = new Date(b.getAttribute("data-release-date"));
+      return dateA - dateB;
+    });
   }
+
+  movies.forEach((movie) => movieWrapper.appendChild(movie));
+}
+
+
+function MoviesComponent() {
+  const [search, setSearch, ] = useState("");
+  const [query, setQuery] = useState("");
+
+ const handleSubmit = (e) => {
+    e.preventDefault();
+    setQuery(search);
+
+    const trimmedSearch = search.trim();
+    if (trimmedSearch === "") {
+      alert("Please enter a search term.");
+      return;
+    }
+  };
+
+  
   return (
     <div className="movies-container">
       <div className="filter-container">
@@ -30,6 +52,6 @@ const getMovies = async (searchTerm) => {
     </div>
   );
 };
-}
+
 
 export default MoviesComponent;

@@ -1,10 +1,15 @@
 import React from "react";
+import MovieLogo from "./assets-folder/MovieLogo.png";
 
 const Nav = () => {
   return (
     <nav className="navbar">
       <div className="nav__container">
-        <img className="logo" src="./assets-folder/MovieLogo.png" alt="" />
+        <div className="logo-container">
+    
+        <img src={MovieLogo} alt="" />
+        </div>
+
         <div className="off-screen-menu">
           <ul className="nav__links">
             <li>Home</li>
