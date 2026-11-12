@@ -1,6 +1,5 @@
 import React from "react";
-import { onFilterChange } from "../index.js";
-import Movies from "https://www.omdbapi.com/?apikey=9b5d9901&s=${searchTerm}";
+
 
 const MoviesComponent = ({ movies }) => {
 const Movies = ({ movies: initialMovies }) => {
