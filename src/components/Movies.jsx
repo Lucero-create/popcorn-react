@@ -33,4 +33,4 @@ const getMovies = async (searchTerm) => {
 };
 }
 
-export default Movies;
+export default MoviesComponent;
