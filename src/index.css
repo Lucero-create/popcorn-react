@@ -1,11 +1,29 @@
 .navbar {
   background-color: white;
-  color: #1620e2;
+  color: #0d16c4;
+  font-size: 2rem;
+  gap: 30px;
   width: 100%;
   display: flex;
   direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.nav__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.Movie-logo {
+  display: flex;
+  height: 10px;
+  width: auto;
 }
 
 .nav__links {
@@ -14,17 +32,23 @@
   gap: 20px;
 }
 
-.logo-container {
-  height: 20px;
-  width: auto;
-  background-color: rgb(174, 82, 82);
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.Movie-logo {
+.landing-content {
+  position: relative;
+  height: 580px;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-  height: 20;
-  width: auto;
+img {
+  width: 100%;
 }
 
 .movie__screen--container {
@@ -35,11 +59,29 @@
   margin-bottom: 20px;
   z-index: 0;
 }
+
+.movie__screen--img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  height: 580px;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+
 .fiter-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
   z-index: 1;
 }
 
@@ -49,4 +91,41 @@
   align-items: center;
   margin-bottom: 20px;
   z-index: 1;
+}
+
+.search-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.movies-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  z-index: 1;
+}
+
+.movie-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.movie-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
 }

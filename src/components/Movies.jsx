@@ -3,6 +3,11 @@ import React, { useState } from "react";
 const onFilterChange = (e) => {
   const selectedFilter = e.target.value;
   const movieWrapper = document.getElementById("movieWrapper");
+
+  if (!movieWrapper) {
+    return;
+  }
+
   const movies = Array.from(movieWrapper.getElementsByClassName("movie"));
 
   if (selectedFilter === "MOST RECENT") {
@@ -20,27 +25,29 @@ const onFilterChange = (e) => {
   }
 
   movies.forEach((movie) => movieWrapper.appendChild(movie));
-}
+};
 
-
-function MoviesComponent() {
-  const [search, setSearch, ] = useState("");
+function MoviesComponent({ movies = [] }) {
+  const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
 
- const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setQuery(search);
 
     const trimmedSearch = search.trim();
     if (trimmedSearch === "") {
       alert("Please enter a search term.");
       return;
     }
+
+    setQuery(trimmedSearch);
   };
 
-  
   return (
     <div className="movies-container">
+      <div className="search-results">
+        <p>Search Results for: {query}</p>
+      </div>
       <div className="filter-container">
         <label htmlFor="filter">Filter by:</label>
         <select id="filter" onChange={onFilterChange}>
@@ -48,10 +55,21 @@ function MoviesComponent() {
           <option value="OLDEST">Oldest</option>
         </select>
       </div>
-      <div id="movieWrapper" className="movie-wrapper"></div>
+      <div className="movie-wrapper" id="movieWrapper">
+        {movies.map((movie) => (
+          <div
+            className="movie movie-card"
+            key={movie.imdbID}
+            data-release-date={movie.ReleaseDate || movie.Year}
+          >
+            <img src={movie.Poster} alt={movie.Title} />
+            <h2>{movie.Title}</h2>
+            <p>{movie.Year}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
-
+}
 
 export default MoviesComponent;
