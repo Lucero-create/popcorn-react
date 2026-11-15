@@ -1,47 +1,14 @@
 import React, { useState } from "react";
+const Movies = () => {
 
-const onFilterChange = (e) => {
-  const selectedFilter = e.target.value;
-  const movieWrapper = document.getElementById("movieWrapper");
+function Movies ({ movies = [], query }) {
+  const [filter, setFilter, Link ] = useState("MOST RECENT");
+  
 
-  if (!movieWrapper) {
-    return;
-  }
-
-  const movies = Array.from(movieWrapper.getElementsByClassName("movie"));
-
-  if (selectedFilter === "MOST RECENT") {
-    movies.sort((a, b) => {
-      const dateA = new Date(a.getAttribute("data-release-date"));
-      const dateB = new Date(b.getAttribute("data-release-date"));
-      return dateB - dateA;
-    });
-  } else if (selectedFilter === "OLDEST") {
-    movies.sort((a, b) => {
-      const dateA = new Date(a.getAttribute("data-release-date"));
-      const dateB = new Date(b.getAttribute("data-release-date"));
-      return dateA - dateB;
-    });
-  }
-
-  movies.forEach((movie) => movieWrapper.appendChild(movie));
-};
-
-function MoviesComponent({ movies = [] }) {
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const trimmedSearch = search.trim();
-    if (trimmedSearch === "") {
-      alert("Please enter a search term.");
-      return;
-    }
-
-    setQuery(trimmedSearch);
-  };
+  const sortedMovies = [...movies].sort((a, b) => {
+    if (filter === "MOST RECENT") return parseInt(b.Year) - parseInt(a.Year);
+    return parseInt(a.Year) - parseInt(b.Year);
+  });
 
   return (
     <div className="movies-container">
@@ -50,26 +17,28 @@ function MoviesComponent({ movies = [] }) {
       </div>
       <div className="filter-container">
         <label htmlFor="filter">Filter by:</label>
-        <select id="filter" onChange={onFilterChange}>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
           <option value="MOST RECENT">Most Recent</option>
           <option value="OLDEST">Oldest</option>
         </select>
       </div>
-      <div className="movie-wrapper" id="movieWrapper">
-        {movies.map((movie) => (
-          <div
-            className="movie movie-card"
-            key={movie.imdbID}
-            data-release-date={movie.ReleaseDate || movie.Year}
-          >
+
+      <div className="movie-wrapper">
+        {sortedMovies.map((movie) => (
+          <div className="movie-card" key={movie.imdbID}>
             <img src={movie.Poster} alt={movie.Title} />
             <h2>{movie.Title}</h2>
             <p>{movie.Year}</p>
+            <Link to="/MovieCard" className="movie-link"></Link>
           </div>
         ))}
       </div>
     </div>
   );
-}
+}};
 
-export default MoviesComponent;
+export default Movies;

@@ -1,6 +1,7 @@
 import React from "react";
 import MovieScreen from "./assets-folder/MovieScreen.png";
 import { useState, useEffect } from "react";
+import MoviesComponent from "./Movies";
 
 const API_KEY = "9b5d9901";
 
@@ -77,21 +78,12 @@ function Landing() {
 
 
 
-          {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-          {movies.length > 0 && (
-            <div className="movies-list">
-              {movies.map((movie) => (
-                <div key={movie.imdbID} className="movie-card">
-                  <img src={movie.Poster} alt={movie.Title} />
-                  <h3>{movie.Title}</h3>
-                  <p>{movie.Year}</p>
-                </div>
-              ))}
-            </div>
-          )}
+        
         </div>
       </div>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      <MoviesComponent movies={movies} query={query} />
     </div>
   );
 }
