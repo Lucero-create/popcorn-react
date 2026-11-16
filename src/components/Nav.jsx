@@ -13,8 +13,8 @@ const Nav = () => {
         <div className="off-screen-menu">
           <ul className="nav__links">
             <li>Home</li>
-            <li>Find your Movie</li>
-            <li>Contact</li>
+            <li>Find a Movie</li>
+            <li>Details</li>
           </ul>
         </div>
       </div>

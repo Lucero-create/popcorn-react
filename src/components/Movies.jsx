@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-const Movies = () => {
+import { Link } from "react-router-dom";
 
 function Movies ({ movies = [], query }) {
-  const [filter, setFilter, Link ] = useState("MOST RECENT");
+  const [filter, setFilter ] = useState("MOST RECENT");
   
 
   const sortedMovies = [...movies].sort((a, b) => {
@@ -33,12 +33,12 @@ function Movies ({ movies = [], query }) {
             <img src={movie.Poster} alt={movie.Title} />
             <h2>{movie.Title}</h2>
             <p>{movie.Year}</p>
-            <Link to="/MovieCard" className="movie-link"></Link>
+            <Link to="./MovieCard" className="movie-link"></Link>
           </div>
         ))}
       </div>
     </div>
   );
-}};
+};
 
 export default Movies;
