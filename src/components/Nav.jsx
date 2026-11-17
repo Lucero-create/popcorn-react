@@ -1,5 +1,6 @@
 import React from "react";
 import MovieLogo from "./assets-folder/MovieLogo.png";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
@@ -12,9 +13,17 @@ const Nav = () => {
 
         <div className="off-screen-menu">
           <ul className="nav__links">
-            <li>Home</li>
-            <li>Find a Movie</li>
-            <li>Details</li>
+            <li className="nav__list">
+              <Link to="/" className="nav__link">Home</Link>
+            </li>
+
+            <li className="nav__list">
+              <Link to="/" className="nav__link">Find a Movie</Link>
+            </li>
+
+            
+            
+          
           </ul>
         </div>
       </div>

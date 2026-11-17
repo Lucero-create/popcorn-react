@@ -12,11 +12,10 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/ Movies" exact render={<Movies movies={Movies} />} />
-          <Route
-            path="/movies/:id"
-            render={() => <MovieCard movies={Movies} />}
-          />
+          <Route path="/Movies" element={<Movies />} />
+          <Route path="/Movies/:id" element={<MovieCard />} />
+         
+        
         </Routes>
       </div>
     </Router>

@@ -1,6 +1,5 @@
 .navbar {
   background-color: white;
-  color: #0d16c4;
   font-size: 2rem;
   gap: 30px;
   width: 100%;
@@ -74,8 +73,14 @@ img {
   justify-content: center;
   align-items: center;
   z-index: 1;
+  font-size: 25px;
+  color: #022b39;
+  text-shadow:
+    1px 1px 0px #f8f5f5,
+    2px 2px 0px #f8f4f4,
+    3px 3px 0px #f4efef,
+    4px 4px 10px rgba(248, 246, 246, 0.4);
 }
-
 
 .search-form {
   display: flex;
@@ -120,6 +125,17 @@ img {
   max-width: 1200px;
   padding: 20px;
 }
+.movie__selected--top {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.back {
+  font-size: 40px;
+}
 
 .movie-card {
   border: 1px solid #ccc;
@@ -128,7 +144,40 @@ img {
   text-align: center;
 }
 
+.movie__container {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 5px;
+}
+
 .movie-card img {
   width: 100%;
   height: auto;
+}
+
+.movie__poster {
+  width: 50%;
+  height: auto;
+}
+
+.movie__info {
+  font-size: 20px;
+}
+
+.movie__facts {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  margin-top: 0;
+}
+
+.movie__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 25px;
+}
+.movie__details--title {
+  justify-content: center;
+  margin: 20px, 20px;
 }

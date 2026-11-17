@@ -2,18 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
-const Movies = [];
-
 const MovieCard = () => {
   const { id } = useParams();
-  const [movie, setMovie] = useState(
-    () => Movies.find((movie) => String(movie.id) === String(id)) || null,
-  );
+  const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    const foundMovie =
-      Movies.find((movie) => String(movie.id) === String(id)) || null;
-    setMovie(foundMovie);
+    fetch(`https://www.omdbapi.com/?i=${id}&apikey=9b5d9901`)
+      .then((res) => res.json())
+      .then((data) => setMovie(data));
   }, [id]);
 
   if (!movie) {
@@ -22,41 +18,33 @@ const MovieCard = () => {
 
   return (
     <main id="movies__main">
+      <div className="movie__selected--top">
+        <Link to="/movies" className="movie__link">
+          <FaArrowLeft icon="FaArrowLeft" />
+        </Link>
+        <Link to="movies" className="search-container">
+          <h2 className="back">Back</h2>
+        </Link>
+      </div>
+
       <div className="movie__container">
-        <div className="row">
-          <div className="movie__selected--top">
-            <Link to="/movies" className="movie__link">
-              <FaArrowLeft icon="FaArrowLeft" />
-            </Link>
-            <Link to="/movies" className="movie__link">
-              <h2 className="back">Back</h2>
-            </Link>
+        <div className="movie__poster">
+          <img src={movie.Poster} alt={movie.img} />
+        </div>
+
+        <div className="movie__facts">
+
+        <div className="movie__info">
+          <h2>{movie.Title}</h2>
+          <p>{movie.Year}</p>
+        
+
+        <div className="movie__details">
+          <div className="movie__details--title">Details</div>
+          <p>
+            {movie.description || movie.summary || "No description available."}
+          </p>
           </div>
-
-          <div className="movie__selected">
-            <figure className="movie__selected--figure">
-              <img
-                src={movie.url}
-                alt={movie.title}
-                className="movie__selected--img"
-              />
-            </figure>
-
-            <div className="movie__selected--description">
-              <h2 className="movie__selected--title">{movie.title}</h2>
-              <div className="movie__selected--year">
-                <span>{movie.year || movie.releaseDate || ""}</span>
-              </div>
-            </div>
-
-            <div className="movie__details">
-              <div className="movie__details--title">Details</div>
-              <p>
-                {movie.description ||
-                  movie.summary ||
-                  "No description available."}
-              </p>
-            </div>
           </div>
         </div>
       </div>
