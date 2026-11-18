@@ -19,10 +19,10 @@ const MovieCard = () => {
   return (
     <main id="movies__main">
       <div className="movie__selected--top">
-        <Link to="/movies" className="movie__link">
+        <Link to="/" className="movie__link">
           <FaArrowLeft icon="FaArrowLeft" />
         </Link>
-        <Link to="movies" className="search-container">
+        <Link to="/" className="search-container">
           <h2 className="back">Back</h2>
         </Link>
       </div>
@@ -40,9 +40,9 @@ const MovieCard = () => {
         
 
         <div className="movie__details">
-          <div className="movie__details--title">Details</div>
+          <div className="movie__details--title">Summary</div>
           <p>
-            {movie.description || movie.summary || "No description available."}
+            {movie.Plot || movie.Plot || "No description available."}
           </p>
           </div>
           </div>

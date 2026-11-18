@@ -21,7 +21,9 @@ const Nav = () => {
               <Link to="/" className="nav__link">Find a Movie</Link>
             </li>
 
-            
+            <li className="nav__list">
+              <Link to="" className="nav__link">Details</Link>
+            </li>
             
           
           </ul>

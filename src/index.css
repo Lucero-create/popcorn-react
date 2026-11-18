@@ -175,6 +175,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 600px;
   font-size: 25px;
 }
 .movie__details--title {
