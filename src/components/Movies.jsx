@@ -64,6 +64,7 @@ function Movies({ movies = [], query }) {
 
    return (
     <div className="movies-container">
+      <div className="row">
       <div className="search-results">
         <p>Search Results for: {query}</p>
       
@@ -84,6 +85,7 @@ function Movies({ movies = [], query }) {
         {sortedMovies.map((movie) => (
           <Movie key={movie.imdbID} movie={movie} />
         ))}
+      </div>
       </div>
     </div>
   );

@@ -9,14 +9,16 @@ function App() {
   return (
     <Router>
       <div className="App">
+        
         <Nav />
+        <div className="app-container">
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/Movies" element={<Movies />} />
           <Route path="/Movies/:id" element={<MovieCard />} />
          
-        
         </Routes>
+      </div>
       </div>
     </Router>
   );

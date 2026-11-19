@@ -46,6 +46,7 @@
   flex-direction: column;
 }
 
+
 img {
   width: 100%;
 }
@@ -114,11 +115,11 @@ button {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 80px;
+  margin-left: 0;
   z-index: 1;
 }
 
-.fiter-container {
+.filter-container {
   width: 200px;
   align-items: center;
 }
@@ -129,8 +130,8 @@ button {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
-  padding: 10px;
+  max-width: 1857px;
+  margin-left: 0;
   z-index: 1;
 }
 
@@ -163,7 +164,9 @@ margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
+  width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
 }
 .movie__selected--top {
@@ -243,4 +246,21 @@ margin-bottom: 30px;
 
 .movie__year--skeleton {
   width: 40%;
+}
+
+@media (max-width: 769px) {
+  .movie-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 500px;
+  padding: 20px;
+}
+  .movie__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
 }

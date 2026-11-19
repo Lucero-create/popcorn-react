@@ -40,7 +40,7 @@ const MovieCard = () => {
         
 
         <div className="movie__details">
-          <div className="movie__details--title">Summary</div>
+          <div className="movie__details--title">Go Back & choose a movie</div>
           <p>
             {movie.Plot || movie.Plot || "No description available."}
           </p>
