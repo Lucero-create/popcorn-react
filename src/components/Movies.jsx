@@ -76,6 +76,7 @@ function Movies({ movies = [], query }) {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         >
+          <option value="default">Default</option>
           <option value="MOST RECENT">Most Recent</option>
           <option value="OLDEST">Oldest</option>
         </select>
