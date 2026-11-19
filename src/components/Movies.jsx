@@ -12,32 +12,46 @@ function Movie({ movie }) {
 
     image.src = movie.Poster;
 
+
     image.onload = () => {
       timeoutId = setTimeout(() => {
         if (mountedRef.current) {
           setImg(image);
         }
-      }, 300);
+      }, 800);
     };
 
     return () => {
       mountedRef.current = false;
-      
+      if (timeoutId) clearTimeout(timeoutId);
+      image.onload = null;
     };
-  }, [movie.Poster]);
+  }, [movie.Poster, movie.Title, movie.Year]);
 
   return (
-    <div className="movie-poster">
-      {img ? (
-        <img src={img.src} alt={movie.Title} />
-      ) : (
-        <div className="movie__img--skeleton"></div>
-      )}
-      <h2>{movie.Title}</h2>
-      <p>{movie.Year}</p>
-      <Link to={`/Movies/${movie.imdbID}`}>View Details</Link>
-    </div>
-  );
+  <div className="movie-poster">
+    {img ? (
+      < img className="imagen" src={img.src} alt={movie.Title} />
+    ) : (
+      <div className="movie__img--skeleton"></div>
+    )}
+
+    {img ? (
+      <>
+        <h2 className="movie-title">{movie.Title}</h2>
+        <p classname="movie-year">{movie.Year}</p>
+      </>
+    ) : (
+      <>
+        <div className="movie__title--skeleton"></div>
+        <div className="movie__year--skeleton"></div>
+      </>
+    )}
+
+    <Link className="view-d" to={`/Movies/${movie.imdbID}`}>View Details</Link>
+  </div>
+);
+
 }
 
 function Movies({ movies = [], query }) {
@@ -48,13 +62,14 @@ function Movies({ movies = [], query }) {
     return parseInt(a.Year) - parseInt(b.Year);
   });
 
-  return (
+   return (
     <div className="movies-container">
       <div className="search-results">
         <p>Search Results for: {query}</p>
-      </div>
+      
       <div className="filter-container">
         <label htmlFor="filter">Filter by:</label>
+        </div>
         <select
           id="filter"
           value={filter}

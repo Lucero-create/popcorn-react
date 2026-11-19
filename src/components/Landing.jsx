@@ -75,10 +75,6 @@ function Landing() {
               <button type="submit">Search</button>
             </form>
           </div>
-
-
-
-        
         </div>
       </div>
       {loading && <p>Loading...</p>}
